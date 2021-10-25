@@ -28,9 +28,14 @@ namespace Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //To Build: Ctrl + shift + B
+            //To get a namespace of a class (which you are sure it exists and you have written the name correctly):
+            //  Ctrl + .  (after placing the cursor on the class name itself)
+
             services.AddDbContext<BloggingContext>(options =>
               options.UseSqlServer(
                   Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
