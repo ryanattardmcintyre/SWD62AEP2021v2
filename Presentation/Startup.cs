@@ -13,6 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DataAccess.Context;
+using Domain.Interfaces;
+using DataAccess.Repositories;
+using Application.Interfaces;
+using Application.Services;
 
 namespace Presentation
 {
@@ -43,6 +47,13 @@ namespace Presentation
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //we are informing the injector class what must be initialized when it comes across
+            //a request for example for IBlogsService, IBlogsRepository
+            services.AddScoped<IBlogsRepository, BlogsRepository>();
+            services.AddScoped<IBlogsService, BlogsService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

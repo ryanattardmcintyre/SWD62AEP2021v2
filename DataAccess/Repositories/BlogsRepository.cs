@@ -8,6 +8,10 @@ using System.Text;
 
 namespace DataAccess.Repositories
 {
+    /// <summary>
+    /// Implemented this version in such a way that it connects and reads/writes data to a db
+    /// </summary>
+
     public class BlogsRepository : IBlogsRepository
     {
         private BloggingContext context;
@@ -44,10 +48,6 @@ namespace DataAccess.Repositories
                 if (b.Id == id)
                     return b;
 */
-            
-
-
-
         }
 
         public IQueryable<Blog> GetBlogs()
