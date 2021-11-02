@@ -4,14 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers
 {
     public class BlogsController : Controller
     {
         private IBlogsService blogsService;
-        public BlogsController(IBlogsService _blogsService)
-        { blogsService = _blogsService;
+        private ICategoriesService categoriesService;
+        public BlogsController(IBlogsService _blogsService, ICategoriesService _categoriesService)
+        { 
+            blogsService = _blogsService;
+            categoriesService = _categoriesService;
         }
 
         public IActionResult Index()
@@ -22,6 +26,15 @@ namespace Presentation.Controllers
 
         public IActionResult Details(int id)
         {
+            return View();
+        }
+
+        //called before the Add Page is loaded/rendered
+        public IActionResult Create()
+        {
+            var categories = categoriesService.GetCategories();
+            ViewBag.Categories = categories;
+            //CreateBlogModel myModel = new CreateBlogModel() { Categories = categories };
             return View();
         }
     }

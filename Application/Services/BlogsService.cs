@@ -18,6 +18,27 @@ namespace Application.Services
             blogsRepo = _blogsRepo;
         }
 
+        public void AddBlog(AddBlogViewModel model)
+        {
+            blogsRepo.AddBlog(new Domain.Models.Blog()
+            {
+                CategoryId = model.CategoryId,
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                LogoImagePath = model.LogoImagePath,
+                Name = model.Name
+            });
+        }
+
+        public void DeleteBlog(int id)
+        {
+            var blog = blogsRepo.GetBlog(id);
+            if (blog != null)
+                blogsRepo.DeleteBlog(blog);
+            else
+                throw new Exception("Blog doesnt exist");
+        }
+
         public BlogViewModel GetBlog(int id)
         { //all this code will be merged into 1 line
             //when we introduce AutoMapper

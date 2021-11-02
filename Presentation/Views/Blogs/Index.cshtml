@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LogoImagePath)
+                Logo
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateUpdated)
@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LogoImagePath)
+                <img src="@item.LogoImagePath" style="width:100px; height:100px" />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateUpdated)
+               <span>@item.DateUpdated.ToShortDateString()</span>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
