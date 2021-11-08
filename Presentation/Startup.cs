@@ -52,6 +52,8 @@ namespace Presentation
             //a request for example for IBlogsService, IBlogsRepository
             services.AddScoped<IBlogsRepository, BlogsRepository>();
             services.AddScoped<IBlogsService, BlogsService>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ICategoriesService, CategoriesService>();
 
 
         }
