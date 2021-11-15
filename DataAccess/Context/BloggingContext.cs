@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
- 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace DataAccess.Context
 {
     //this is the class which is the gateway to our database
@@ -11,7 +12,7 @@ namespace DataAccess.Context
     //the dbcontext class contains methods which will allow us to
     //amongst other things to connect with the database, add an item to the database
     //delete, update, querying using LINQ....
-    public class BloggingContext : DbContext
+    public class BloggingContext : IdentityDbContext
     {
         public BloggingContext(DbContextOptions<BloggingContext> options):
             base(options)
