@@ -8,17 +8,12 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1_toDelete.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DataAccess.Context;
-using Domain.Interfaces;
-using DataAccess.Repositories;
-using Application.Interfaces;
-using Application.Services;
-using Domain.Models;
 
-namespace Presentation
+namespace WebApplication1_toDelete
 {
     public class Startup
     {
@@ -32,27 +27,13 @@ namespace Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //To Build: Ctrl + shift + B
-            //To get a namespace of a class (which you are sure it exists and you have written the name correctly):
-            //  Ctrl + .  (after placing the cursor on the class name itself)
-
-            services.AddDbContext<BloggingContext>(options =>
-              options.UseSqlServer(
-                  Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDefaultIdentity<CustomUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<BloggingContext>();
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            //we are informing the injector class what must be initialized when it comes across
-            //a request for example for IBlogsService, IBlogsRepository
-            services.AddScoped<IBlogsRepository, BlogsRepository>();
-            services.AddScoped<IBlogsService, BlogsService>();
-            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
-            services.AddScoped<ICategoriesService, CategoriesService>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

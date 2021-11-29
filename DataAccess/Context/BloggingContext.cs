@@ -12,7 +12,7 @@ namespace DataAccess.Context
     //the dbcontext class contains methods which will allow us to
     //amongst other things to connect with the database, add an item to the database
     //delete, update, querying using LINQ....
-    public class BloggingContext : IdentityDbContext
+    public class BloggingContext : IdentityDbContext<CustomUser>
     {
         public BloggingContext(DbContextOptions<BloggingContext> options):
             base(options)

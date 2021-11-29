@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Presentation.Controllers
 {
     //Application Service: e.g. IBlogsService, ICategoriesService
     //Framework Service: e.g. IWebHostEnvironment
+    [Authorize]
     public class BlogsController : Controller
     {
         private IBlogsService blogsService;
@@ -25,7 +27,7 @@ namespace Presentation.Controllers
             blogsService = _blogsService;
             categoriesService = _categoriesService;
         }
-
+         
         public IActionResult Index()
         {
             var list = blogsService.GetBlogs();
@@ -38,7 +40,7 @@ namespace Presentation.Controllers
         //}
 
         //called before the Add Page is loaded/rendered
-        [HttpGet]
+        [HttpGet] 
         public IActionResult Create()
         {
             var categories = categoriesService.GetCategories();
@@ -49,6 +51,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
+       
         public IActionResult Create(AddBlogViewModel model, IFormFile logo)
         {
             if (string.IsNullOrEmpty(model.Name))
