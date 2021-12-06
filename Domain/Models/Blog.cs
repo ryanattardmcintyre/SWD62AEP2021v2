@@ -23,6 +23,6 @@ namespace Domain.Models
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; } //foreign key
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; } //navigational property
     }
 }

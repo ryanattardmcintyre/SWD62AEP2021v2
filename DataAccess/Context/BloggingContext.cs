@@ -23,6 +23,10 @@ namespace DataAccess.Context
         public DbSet<Category> Categories { get; set; }
 
 
-      
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
     }
 }

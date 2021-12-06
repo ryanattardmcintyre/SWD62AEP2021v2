@@ -48,6 +48,7 @@ namespace Presentation
             //we are informing the injector class what must be initialized when it comes across
             //a request for example for IBlogsService, IBlogsRepository
             services.AddScoped<IBlogsRepository, BlogsRepository>();
+            
             services.AddScoped<IBlogsService, BlogsService>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<ICategoriesService, CategoriesService>();

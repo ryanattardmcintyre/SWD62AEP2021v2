@@ -34,10 +34,13 @@ namespace Presentation.Controllers
             return View(list);
         }
 
-        //public IActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        //View >> Controller >> Service >> Repository >> database
+        //View << Controller << Service << Repository << database
+        public IActionResult Details(int id)
+        {
+            var blog = blogsService.GetBlog(id);
+            return View(blog);
+        }
 
         //called before the Add Page is loaded/rendered
         [HttpGet] 
@@ -56,6 +59,9 @@ namespace Presentation.Controllers
         {
             if (string.IsNullOrEmpty(model.Name))
             {
+                var categories = categoriesService.GetCategories();
+                ViewBag.Categories = categories;
+
                 ViewBag.Error = "Name should not be left empty";
                 return View();
             }
@@ -80,6 +86,7 @@ namespace Presentation.Controllers
                 }
                 blogsService.AddBlog(model);
                 ViewBag.Message = "Blog saved successfully";
+                
             }
 
             return RedirectToAction("Create");

@@ -15,7 +15,7 @@ namespace Domain.Models
         //Ctrl+. opens the intellisense for suggestions
         [ForeignKey("Blog")]  //this attribute means that the foreign key represents the Property "Blog" for reference
         public int BlogId { get; set; } //Foreign Key
-        public Blog Blog { get; set; } //reference to the other table
+        public virtual Blog Blog { get; set; } //reference to the other table
         
         public DateTime DateCreated { get; set; }
         public string Author { get; set; }

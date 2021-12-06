@@ -1,7 +1,22 @@
-﻿
+﻿ 
 @{
     ViewData["Title"] = "Create";
 }
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
 
 <h1>Create</h1>
 
@@ -9,7 +24,8 @@
     <table>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="Name" class="form-control" /> </td>
+            <td><input type="text" name="Name" class="form-control" />
+            </td>
         </tr>
         <tr>
             <td>Logo:</td>
@@ -29,7 +45,7 @@
         <tr>
             <td colspan="2"><input type="submit" value="Submit" /></td>
         </tr>
-            
-       
+
+
     </table>
 </form>
