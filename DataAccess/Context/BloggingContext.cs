@@ -21,7 +21,7 @@ namespace DataAccess.Context
         public DbSet<Blog> Blogs { get; set; }  //DbSet will eventually be converted into a table
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
-
+        public DbSet<Log> Logs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

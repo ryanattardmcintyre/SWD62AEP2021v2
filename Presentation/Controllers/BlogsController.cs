@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.ViewModels;
+using DataAccess.Repositories;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,11 +20,13 @@ namespace Presentation.Controllers
     [Authorize]
     public class BlogsController : Controller
     {
+        
         private IBlogsService blogsService;
         private ICategoriesService categoriesService;
         private IWebHostEnvironment webHostEnvironment;
         public BlogsController(IBlogsService _blogsService, ICategoriesService _categoriesService, IWebHostEnvironment _webHostEnvironment)
         {
+            
             webHostEnvironment = _webHostEnvironment;
             blogsService = _blogsService;
             categoriesService = _categoriesService;
@@ -30,6 +34,7 @@ namespace Presentation.Controllers
          
         public IActionResult Index()
         {
+            
             var list = blogsService.GetBlogs();
             return View(list);
         }

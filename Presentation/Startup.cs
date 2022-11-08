@@ -53,6 +53,8 @@ namespace Presentation
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<ICategoriesService, CategoriesService>();
 
+           
+
 
         }
 
